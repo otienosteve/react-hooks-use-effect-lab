@@ -10,19 +10,20 @@ function Question({ question, onAnswered }) {
   }
   function timer(){
     console.log("timer Called")
-    setTimeout(()=>{
-      setInterval(()=>{
-        setTimeRemaining(time=>time-=1)
-       
-     },1000)},0)
-    return ()=>{
-      clearTimeout()
-      clearInterval()
-    }
+ 
   }
   useEffect(()=>{
    console.log("useEffect called") 
-   timer()
+   const time=setTimeout(()=>{
+    setInterval(()=>{
+      setTimeRemaining(time=>time-=1)
+     
+   },1000)},0)
+  return ()=>{
+    clearTimeout()
+    clearInterval()
+  }
+  return  clearTimeout(time)
   },[])
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
